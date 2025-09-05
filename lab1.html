@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTech AI Lab - C Assignments</title>
+    <!-- Assuming you have a favicon.png in your repo. -->
+    <link rel="icon" type="image/png" href="favicon-16x16.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Bold, comic-book fonts for the Hulk theme -->
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Anton&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* New color palette: Hulk Theme */
+            --hulk-green: #4caf50;
+            --hulk-green-light: #66bb6a;
+            --hulk-purple: #7e57c2;
+            --hulk-purple-light: #9575cd;
+            --hulk-dark: #212121;
+            --light-text: #eceff1;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--hulk-dark);
+            /* "Gamma radiation" background effect */
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.25), transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(126, 87, 194, 0.2), transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(76, 175, 80, 0.1), transparent 70%);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            color: var(--light-text);
+        }
+        
+        .main-container {
+            max-width: 56rem; 
+            margin-left: auto;
+            margin-right: auto;
+            /* Cracked Glassmorphism Effect */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 25px rgba(76, 175, 80, 0.4);
+        }
+
+        .header-title {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 4px;
+            font-weight: 400;
+            color: var(--hulk-green);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .header-subtitle {
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 2px;
+            font-weight: 400;
+            color: #b0bec5;
+        }
+
+        /* New styles for problem cards */
+        .problem-card {
+            background-color: rgba(126, 87, 194, 0.1);
+            border-left: 5px solid var(--hulk-purple);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .problem-title {
+            font-family: 'Anton', sans-serif;
+            color: var(--hulk-green-light);
+            font-size: 1.75rem;
+            letter-spacing: 1px;
+        }
+
+        .problem-description {
+            color: var(--light-text);
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .io-title {
+            font-family: 'Anton', sans-serif;
+            color: var(--hulk-purple-light);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .io-box {
+            background-color: var(--hulk-dark);
+            color: #f1f1f1;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap; /* To wrap long lines */
+        }
+
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    
+    <div class="main-container w-full p-6 md:p-8">
+        <header class="text-center mb-8">
+            <h1 class="header-title text-5xl md:text-6xl">C Programming</h1>
+            <p class="header-subtitle text-2xl mt-2 tracking-wider">Lab Assignment 1</p>
+        </header>
+
+        <main class="overflow-hidden p-4 space-y-8">
+            <!-- Problem 1 -->
+            <div class="problem-card">
+                <h2 class="problem-title">Problem 1: Arithmetic Operations</h2>
+                <p class="problem-description">Write a C program to perform addition, subtraction, and multiplication on two integers.</p>
+                <div class="io-section mt-4">
+                    <h3 class="io-title">Sample Input</h3>
+                    <pre class="io-box">Enter first integer: 10
+Enter second integer: 5</pre>
+                </div>
+                <div class="io-section mt-4">
+                    <h3 class="io-title">Expected Output</h3>
+                    <pre class="io-box">Sum: 15
+Difference: 5
+Product: 50</pre>
+                </div>
+            </div>
+
+            <!-- Problem 2 -->
+            <div class="problem-card">
+                <h2 class="problem-title">Problem 2: Area of a Square</h2>
+                <p class="problem-description">Write a program in C to find the area of a square.</p>
+                <div class="io-section mt-4">
+                    <h3 class="io-title">Sample Input</h3>
+                    <pre class="io-box">Enter the side of the square: 4</pre>
+                </div>
+                <div class="io-section mt-4">
+                    <h3 class="io-title">Expected Output</h3>
+                    <pre class="io-box">Area of the square: 16</pre>
+                </div>
+            </div>
+
+            <!-- Problem 3 -->
+            <div class="problem-card">
+                <h2 class="problem-title">Problem 3: Area of a Triangle</h2>
+                <p class="problem-description">Write a program in C to find the area of a triangle.</p>
+                <div class="io-section mt-4">
+                    <h3 class="io-title">Sample Input</h3>
+                    <pre class="io-box">Enter the base of the triangle: 6
+Enter the height of the triangle: 8</pre>
+                </div>
+                <div class="io-section mt-4">
+                    <h3 class="io-title">Expected Output</h3>
+                    <pre class="io-box">Area of the triangle: 24.00</pre>
+                </div>
+            </div>
+
+            <!-- Problem 4 -->
+            <div class="problem-card">
+                <h2 class="problem-title">Problem 4: Fahrenheit to Celsius</h2>
+                <p class="problem-description">Write a program in C to convert Fahrenheit to Celsius using the formula °C = (°F - 32) × 5/9.</p>
+                <div class="io-section mt-4">
+                    <h3 class="io-title">Sample Input</h3>
+                    <pre class="io-box">Enter temperature in Fahrenheit: 98.6</pre>
+                </div>
+                <div class="io-section mt-4">
+                    <h3 class="io-title">Expected Output</h3>
+                    <pre class="io-box">Temperature in Celsius: 37.00</pre>
+                </div>
+            </div>
+
+            <!-- Problem 5 -->
+            <div class="problem-card">
+                <h2 class="problem-title">Problem 5: Area of a Circle</h2>
+                <p class="problem-description">Write a C program to find the area of a circle.</p>
+                <div class="io-section mt-4">
+                    <h3 class="io-title">Sample Input</h3>
+                    <pre class="io-box">Enter the radius of the circle: 7</pre>
+                </div>
+                <div class="io-section mt-4">
+                    <h3 class="io-title">Expected Output</h3>
+                    <pre class="io-box">Area of the circle: 153.94</pre>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="text-center mt-8 pt-6">
+            <p class="text-gray-500 text-sm">&copy; 2025 MTech AI Program. Don't make it angry.</p>
+        </footer>
+    </div>
+</body>
+</html>
+
