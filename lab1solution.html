@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTech AI Lab - C Solutions</title>
+    <link rel="icon" type="image/png" href="favicon-16x16.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --hulk-green: #4caf50;
+            --hulk-green-light: #66bb6a;
+            --hulk-purple: #7e57c2;
+            --hulk-purple-light: #9575cd;
+            --hulk-dark: #212121;
+            --light-text: #eceff1;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--hulk-dark);
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.25), transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(126, 87, 194, 0.2), transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(76, 175, 80, 0.1), transparent 70%);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            color: var(--light-text);
+        }
+        
+        .main-container {
+            max-width: 56rem; 
+            margin-left: auto;
+            margin-right: auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 25px rgba(76, 175, 80, 0.4);
+        }
+
+        .header-title {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 4px;
+            font-weight: 400;
+            color: var(--hulk-green);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .header-subtitle {
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 2px;
+            font-weight: 400;
+            color: #b0bec5;
+        }
+
+        .solution-card {
+            background-color: rgba(76, 175, 80, 0.1);
+            border-left: 5px solid var(--hulk-green);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .solution-title {
+            font-family: 'Anton', sans-serif;
+            color: var(--hulk-purple-light);
+            font-size: 1.75rem;
+            letter-spacing: 1px;
+        }
+
+        .code-box {
+            background-color: var(--hulk-dark);
+            color: #f1f1f1;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            margin-top: 1rem;
+            border: 1px solid rgba(126, 87, 194, 0.3);
+            position: relative;
+        }
+        
+        .code-box .keyword { color: var(--hulk-purple-light); }
+        .code-box .type { color: var(--hulk-green-light); }
+        .code-box .string { color: #e57373; }
+        .code-box .comment { color: #9e9e9e; }
+        .code-box .number { color: #81d4fa; }
+        .code-box .function { color: #ffd54f; }
+
+        .copy-btn {
+            background-color: var(--hulk-purple);
+            border: none;
+            padding: 0.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .copy-btn:hover {
+            background-color: var(--hulk-purple-light);
+        }
+        .copy-btn svg {
+            width: 20px;
+            height: 20px;
+            color: var(--light-text);
+        }
+
+        .explanation {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 8px;
+        }
+        .explanation-title {
+            font-family: 'Anton', sans-serif;
+            color: var(--hulk-green-light);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+        .explanation p {
+            line-height: 1.6;
+        }
+        .explanation code {
+            background-color: var(--hulk-dark);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--hulk-purple-light);
+        }
+
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    
+    <div class="main-container w-full p-6 md:p-8">
+        <header class="text-center mb-8">
+            <h1 class="header-title text-5xl md:text-6xl">C Programming</h1>
+            <p class="header-subtitle text-2xl mt-2 tracking-wider">Lab Assignment 1 - Solutions</p>
+        </header>
+
+        <main class="overflow-hidden p-4 space-y-8">
+            <!-- Solution 1 -->
+            <div class="solution-card">
+                <div class="flex justify-between items-center">
+                    <h2 class="solution-title">Solution 1: Arithmetic Operations</h2>
+                    <button class="copy-btn" title="Copy Code">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <pre class="code-box"><code><span class="comment">// C program for arithmetic operations</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="type">int</span> <span class="function">main</span>() {
+    <span class="type">int</span> num1, num2;
+    printf(<span class="string">"Enter first integer: "</span>);
+    scanf(<span class="string">"%d"</span>, &num1);
+    printf(<span class="string">"Enter second integer: "</span>);
+    scanf(<span class="string">"%d"</span>, &num2);
+
+    printf(<span class="string">"Sum: %d\n"</span>, num1 + num2);
+    printf(<span class="string">"Difference: %d\n"</span>, num1 - num2);
+    printf(<span class="string">"Product: %d\n"</span>, num1 * num2);
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+                <div class="explanation">
+                    <h3 class="explanation-title">Explanation</h3>
+                    <p>
+                        This program performs basic arithmetic. It starts by including the <code>stdio.h</code> header for standard input/output functions. Inside the <code>main</code> function, two integer variables, <code>num1</code> and <code>num2</code>, are declared. The user is prompted to enter two numbers, which are read using <code>scanf</code> and stored in these variables. Finally, it calculates their sum, difference, and product directly within <code>printf</code> statements and displays the results.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Solution 2 -->
+            <div class="solution-card">
+                 <div class="flex justify-between items-center">
+                    <h2 class="solution-title">Solution 2: Area of a Square</h2>
+                    <button class="copy-btn" title="Copy Code">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <pre class="code-box"><code><span class="comment">// C program for area of a square</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="type">int</span> <span class="function">main</span>() {
+    <span class="type">int</span> side;
+    printf(<span class="string">"Enter the side of the square: "</span>);
+    scanf(<span class="string">"%d"</span>, &side);
+
+    <span class="type">int</span> area = side * side;
+    printf(<span class="string">"Area of the square: %d\n"</span>, area);
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+                <div class="explanation">
+                    <h3 class="explanation-title">Explanation</h3>
+                    <p>
+                        This code calculates the area of a square. It prompts the user for the length of one side and stores it in the integer variable <code>side</code>. It then calculates the area by multiplying the side by itself (<code>side * side</code>) and stores the result in the <code>area</code> variable. The final calculated area is then printed to the console.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Solution 3 -->
+            <div class="solution-card">
+                <div class="flex justify-between items-center">
+                    <h2 class="solution-title">Solution 3: Area of a Triangle</h2>
+                    <button class="copy-btn" title="Copy Code">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <pre class="code-box"><code><span class="comment">// C program for area of a triangle</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="type">int</span> <span class="function">main</span>() {
+    <span class="type">float</span> base, height;
+    printf(<span class="string">"Enter the base of the triangle: "</span>);
+    scanf(<span class="string">"%f"</span>, &base);
+    printf(<span class="string">"Enter the height of the triangle: "</span>);
+    scanf(<span class="string">"%f"</span>, &height);
+
+    <span class="type">float</span> area = <span class="number">0.5</span> * base * height;
+    printf(<span class="string">"Area of the triangle: %.2f\n"</span>, area);
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+                <div class="explanation">
+                    <h3 class="explanation-title">Explanation</h3>
+                    <p>
+                        This program calculates the area of a triangle. Since the base, height, or area can be decimal numbers, we use the <code>float</code> data type. After getting the base and height from the user, it applies the formula <code>Area = 0.5 * base * height</code>. The result is printed using the <code>%.2f</code> format specifier, which displays the number with exactly two decimal places.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Solution 4 -->
+            <div class="solution-card">
+                <div class="flex justify-between items-center">
+                    <h2 class="solution-title">Solution 4: Fahrenheit to Celsius</h2>
+                    <button class="copy-btn" title="Copy Code">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <pre class="code-box"><code><span class="comment">// C program to convert Fahrenheit to Celsius</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="type">int</span> <span class="function">main</span>() {
+    <span class="type">float</span> fahrenheit;
+    printf(<span class="string">"Enter temperature in Fahrenheit: "</span>);
+    scanf(<span class="string">"%f"</span>, &fahrenheit);
+
+    <span class="type">float</span> celsius = (fahrenheit - <span class="number">32</span>) * <span class="number">5.0</span> / <span class="number">9.0</span>;
+    printf(<span class="string">"Temperature in Celsius: %.2f\n"</span>, celsius);
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+                <div class="explanation">
+                    <h3 class="explanation-title">Explanation</h3>
+                    <p>
+                        This program converts a temperature from Fahrenheit to Celsius. It reads a temperature in Fahrenheit as a <code>float</code>. The conversion formula <code>(°F - 32) * 5/9</code> is then applied. It's important to use <code>5.0</code> and <code>9.0</code> to ensure floating-point division; otherwise, integer division would result in <code>5/9 = 0</code>, giving an incorrect result. The final Celsius temperature is printed, formatted to two decimal places.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Solution 5 -->
+            <div class="solution-card">
+                 <div class="flex justify-between items-center">
+                    <h2 class="solution-title">Solution 5: Area of a Circle</h2>
+                    <button class="copy-btn" title="Copy Code">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <pre class="code-box"><code><span class="comment">// C program for area of a circle</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#define</span> PI <span class="number">3.14159</span>
+
+<span class="type">int</span> <span class="function">main</span>() {
+    <span class="type">float</span> radius;
+    printf(<span class="string">"Enter the radius of the circle: "</span>);
+    scanf(<span class="string">"%f"</span>, &radius);
+
+    <span class="type">float</span> area = PI * radius * radius;
+    printf(<span class="string">"Area of the circle: %.2f\n"</span>, area);
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+                <div class="explanation">
+                    <h3 class="explanation-title">Explanation</h3>
+                    <p>
+                        This program finds the area of a circle. We first define a constant <code>PI</code> using the <code>#define</code> preprocessor directive for better readability. The program then reads the circle's radius from the user. Using the formula <code>Area = PI * r²</code>, it calculates the area and stores it in a <code>float</code> variable. The result is then printed to two decimal places.
+                    </p>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="text-center mt-8 pt-6">
+            <p class="text-gray-500 text-sm">&copy; 2025 MTech AI Program. Don't make it angry.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const allCopyButtons = document.querySelectorAll('.copy-btn');
+
+            allCopyButtons.forEach(copyBtn => {
+                copyBtn.addEventListener('click', (event) => {
+                    const card = event.currentTarget.closest('.solution-card');
+                    const codeToCopy = card.querySelector('pre.code-box code').innerText;
+                    
+                    let textArea = document.createElement("textarea");
+                    textArea.value = codeToCopy;
+                    textArea.style.position = "fixed";
+                    textArea.style.left = "-9999px";
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    
+                    let successful = false;
+                    try {
+                        successful = document.execCommand('copy');
+                    } catch (err) {
+                        console.error('Fallback: Oops, unable to copy', err);
+                    }
+
+                    document.body.removeChild(textArea);
+                    
+                    if (successful) {
+                        const originalIcon = copyBtn.innerHTML;
+                        copyBtn.innerHTML = `
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>`;
+                        setTimeout(() => {
+                            copyBtn.innerHTML = originalIcon;
+                        }, 2000);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
