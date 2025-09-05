@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTech C Lab</title>
+    <link rel="icon" type="image/png" href="favicon-16x16.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --hulk-green: #4caf50;
+            --hulk-green-light: #66bb6a;
+            --hulk-purple: #7e57c2;
+            --hulk-purple-light: #9575cd;
+            --hulk-dark: #212121;
+            --light-text: #eceff1;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--hulk-dark);
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.25), transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(126, 87, 194, 0.2), transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(76, 175, 80, 0.1), transparent 70%);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            color: var(--light-text);
+        }
+        
+        .main-container {
+            max-width: 56rem; 
+            margin-left: auto;
+            margin-right: auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 25px rgba(76, 175, 80, 0.4);
+        }
+
+        .header-title {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 4px;
+            font-weight: 400;
+            color: var(--hulk-green);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .header-subtitle {
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 2px;
+            font-weight: 400;
+            color: #b0bec5;
+        }
+
+        .step-card {
+            background-color: rgba(126, 87, 194, 0.1);
+            border-left: 5px solid var(--hulk-purple);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .step-title {
+            font-family: 'Anton', sans-serif;
+            color: var(--hulk-green-light);
+            font-size: 1.75rem;
+            letter-spacing: 1px;
+        }
+
+        .command-box {
+            background-color: var(--hulk-dark);
+            color: #f1f1f1;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            margin-top: 1rem;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            position: relative;
+        }
+        .command-box::before {
+            content: "$";
+            margin-right: 0.5em;
+            color: var(--hulk-green-light);
+        }
+
+        .explanation {
+            margin-top: 1rem;
+            line-height: 1.6;
+        }
+       .explanation code {
+            background-color: var(--hulk-dark);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--hulk-purple-light);
+        }
+
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    
+    <div class="main-container w-full p-6 md:p-8">
+        <header class="text-center mb-8">
+            <h1 class="header-title text-5xl md:text-6xl">Running C Code</h1>
+            <p class="header-subtitle text-2xl mt-2 tracking-wider">A Beginner's Guide for Linux</p>
+        </header>
+
+        <main class="overflow-hidden p-4 space-y-8">
+            
+            <!-- Step 1 -->
+            <div class="step-card">
+                <h2 class="step-title">Step 1: Open Your Terminal</h2>
+                <div class="explanation">
+                    <p>The terminal is your command center in Linux. It's a powerful tool where you can run commands to control your computer. You can usually find it in your applications menu or by pressing <code>Ctrl+Alt+T</code>.</p>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-card">
+                <h2 class="step-title">Step 2: Create a Workspace</h2>
+                <div class="explanation">
+                    <p>It's a good practice to keep your projects organized. Let's create a dedicated folder for your C programs. First, navigate to your Desktop and create a new directory called <code>c-programs</code>.</p>
+                    <p class="mt-2">Use the <code>cd</code> (change directory) command to move into your Desktop:</p>
+                    <pre class="command-box"><code>cd Desktop</code></pre>
+                    <p class="mt-2">Now, use the <code>mkdir</code> (make directory) command to create the new folder:</p>
+                    <pre class="command-box"><code>mkdir c-programs</code></pre>
+                    <p class="mt-2">Finally, move into your new workspace:</p>
+                    <pre class="command-box"><code>cd c-programs</code></pre>
+                    <p class="mt-2"><strong>IMPORTANT:</strong> You must always be inside this folder when you work on your C files for this lab!</p>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-card">
+                <h2 class="step-title">Step 3: Create Your C File</h2>
+                <div class="explanation">
+                    <p>Now that you're in the right directory, you can create your first C source file. We'll call it <code>program1.c</code>. Use the <code>touch</code> command to create an empty file.</p>
+                    <pre class="command-box"><code>touch program1.c</code></pre>
+                    <p class="mt-2">You can type <code>ls</code> to list the files and see that <code>program1.c</code> has been created.</p>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step-card">
+                <h2 class="step-title">Step 4: Write the Code</h2>
+                <div class="explanation">
+                    <p>The <code>touch</code> command only creates an empty file. You need a text editor to write your code. You can use a simple terminal editor like <code>nano</code> or a graphical editor like VS Code.</p>
+                    <p class="mt-2">For example, to use nano, you would type:</p>
+                    <pre class="command-box"><code>nano program1.c</code></pre>
+                    <p class="mt-2">Now, copy the code for one of the problems into this file. After you're done, save the file and exit the editor (in <code>nano</code>, you press <code>Ctrl+X</code>, then <code>Y</code>, then <code>Enter</code>).</p>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step-card">
+                <h2 class="step-title">Step 5: Compile with GCC</h2>
+                <div class="explanation">
+                    <p>Your C code is human-readable, but the computer needs it in a format called "machine code". The process of converting your code is called **compiling**. We use a compiler named <strong>GCC</strong> (GNU Compiler Collection).</p>
+                    <p class="mt-2">To compile <code>program1.c</code>, run the following command:</p>
+                    <pre class="command-box"><code>gcc program1.c -o program1</code></pre>
+                    <p class="mt-2">Let's break this down:</p>
+                    <ul>
+                        <li><code>gcc</code>: This is the command to call the compiler.</li>
+                        <li><code>program1.c</code>: This is your source code file (the input).</li>
+                        <li><code>-o program1</code>: The <code>-o</code> is a flag that means "output file". We are telling GCC to name the compiled, runnable program <code>program1</code> (the output). If you don't use this, it will be named <code>a.out</code> by default.</li>
+                    </ul>
+                    <p class="mt-2">If there are no errors in your code, the command will complete silently. If you type <code>ls</code> now, you will see a new file: <code>program1</code> (it might be a different color!). This is your executable program.</p>
+                </div>
+            </div>
+            
+            <!-- Step 6 -->
+            <div class="step-card">
+                <h2 class="step-title">Step 6: Run Your Program!</h2>
+                <div class="explanation">
+                    <p>Now it's time to run your compiled program. Use the following command:</p>
+                    <pre class="command-box"><code>./program1</code></pre>
+                    <p class="mt-2">What does <code>./</code> mean? It tells the terminal to look for the program in the **current directory**. For security reasons, Linux doesn't look in the current directory for commands by default, so you have to be explicit.</p>
+                    <p class="mt-2">Your program should now run, and you'll see its output in the terminal!</p>
+                </div>
+            </div>
+            
+            <!-- What if I close? -->
+            <div class="step-card">
+                <h2 class="step-title">What If I Close The Terminal?</h2>
+                <div class="explanation">
+                    <p>Don't worry! Your files are saved. When you open a new terminal, it usually starts in your home directory (<code>~</code>). You just need to navigate back to your workspace before you can compile or run your files again.</p>
+                    <p class="mt-2">Just use the <code>cd</code> command from Step 2 to get back into your folder:</p>
+                    <pre class="command-box"><code>cd Desktop/c-programs</code></pre>
+                    <p class="mt-2">Once you are in the correct directory, you can use <code>gcc</code> and <code>./</code> commands just like before.</p>
+                </div>
+            </div>
+
+        </main>
+        
+        <footer class="text-center mt-8 pt-6">
+            <p class="text-gray-500 text-sm">&copy; ~Gaurav Singh Rajput (MTech-2nd-Year).</p>
+        </footer>
+    </div>
+</body>
+</html>
