@@ -1,0 +1,10 @@
+{
+  "title": "Get Ready for the Next Lab!",
+  "message": "Focus on these fundamental C concepts before you come. You'll be using them a lot:",
+  "tasks": [
+    "Master the syntax of `if`, `if-else`, and `else-if` statements.",
+    "Practice writing programs to find the largest of three numbers or to check if a year is a leap year.",
+    "Understand the complete structure of a `for` loop: initialization, condition, and increment/decrement.",
+    "Write a program to print the multiplication table of a given number using a `for` loop."
+  ]
+}
