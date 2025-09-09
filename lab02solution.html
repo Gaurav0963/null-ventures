@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 2 Solutions</title>
+    <link rel="icon" type="image/png" href="favicon-16x16.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Anton&family=Roboto:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --hulk-green: #4caf50;
+            --hulk-green-light: #66bb6a;
+            --hulk-purple: #7e57c2;
+            --hulk-purple-light: #9575cd;
+            --hulk-dark: #212121;
+            --light-text: #eceff1;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--hulk-dark);
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.25), transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(126, 87, 194, 0.2), transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(76, 175, 80, 0.1), transparent 70%);
+            color: var(--light-text);
+        }
+        .main-container {
+            max-width: 64rem; 
+            margin: auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 25px rgba(76, 175, 80, 0.4);
+        }
+        .header-title {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 4px;
+            color: var(--hulk-green);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        .problem-card {
+            background-color: rgba(0,0,0,0.3);
+            border-left: 5px solid var(--hulk-purple);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+        .solution-toggle {
+            background-color: rgba(126, 87, 194, 0.2);
+            border: 1px solid var(--hulk-purple);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: var(--hulk-purple-light);
+            transition: background-color 0.3s;
+        }
+        .solution-toggle:hover {
+            background-color: rgba(126, 87, 194, 0.4);
+        }
+        .solution-toggle svg {
+            transition: transform 0.3s ease;
+        }
+        .solution-toggle.open svg {
+            transform: rotate(180deg);
+        }
+        .solution-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background-color: #1a1a1a;
+            border-radius: 0 0 8px 8px;
+        }
+        pre {
+            font-family: 'Fira Code', monospace;
+            background-color: var(--hulk-dark);
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            position: relative;
+        }
+        .code-keyword { color: #c792ea; font-weight: bold; }
+        .code-preprocessor { color: #89ddff; }
+        .code-string { color: #c3e88d; }
+        .code-comment { color: #546e7a; font-style: italic; }
+        .code-function { color: #82aaff; }
+        .code-number { color: #f78c6c; }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--hulk-purple);
+            color: var(--light-text);
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        pre:hover .copy-btn {
+            opacity: 1;
+        }
+        .btn-home {
+            background-color: var(--hulk-purple);
+            color: var(--light-text);
+            border-radius: 10px;
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        .btn-home:hover {
+            background-color: var(--hulk-purple-light);
+            transform: translateY(-3px);
+        }
+        .tab-btn {
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 2px;
+            font-size: 1.25rem;
+            cursor: pointer;
+            border-bottom: 4px solid transparent;
+        }
+        .tab-btn.active {
+            color: var(--hulk-green-light);
+            border-bottom-color: var(--hulk-green-light);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="main-container w-full p-6 md:p-8">
+        <header class="text-center mb-6">
+            <h1 class="header-title text-5xl md:text-6xl">Assignment 2 - Solutions</h1>
+        </header>
+
+        <main>
+            <div class="flex border-b-2 border-hulk-green mb-8">
+                <button id="ece-tab" class="tab-btn active p-4" onclick="showTab('ece')">ECE / MAE</button>
+                <button id="cse-tab" class="tab-btn p-4" onclick="showTab('cse')">CSE / MNC</button>
+            </div>
+
+            <!-- ECE / MAE Content -->
+            <div id="ece-content" class="space-y-8">
+                <!-- Solution 1 -->
+                <div class="problem-card">
+                    <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">1. Area & Perimeter of Rectangle, Area & Circumference of Circle.</h3>
+                    <button class="solution-toggle">
+                        <span>Show/Hide Solution</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">float</span> length, breadth, radius;
+    <span class="code-keyword">float</span> rect_area, rect_perimeter, circ_area, circumference;
+    <span class="code-keyword">const float</span> PI = <span class="code-number">3.14159</span>;
+
+    <span class="code-function">printf</span>(<span class="code-string">"Enter length of rectangle: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%f"</span>, &length);
+    <span class="code-function">printf</span>(<span class="code-string">"Enter breadth of rectangle: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%f"</span>, &breadth);
+    <span class="code-function">printf</span>(<span class="code-string">"Enter radius of circle: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%f"</span>, &radius);
+
+    rect_area = length * breadth;
+    rect_perimeter = <span class="code-number">2</span> * (length + breadth);
+    circ_area = PI * radius * radius;
+    circumference = <span class="code-number">2</span> * PI * radius;
+
+    <span class="code-function">printf</span>(<span class="code-string">"Area of rectangle: %.2f\n"</span>, rect_area);
+    <span class="code-function">printf</span>(<span class="code-string">"Perimeter of rectangle: %.2f\n"</span>, rect_perimeter);
+    <span class="code-function">printf</span>(<span class="code-string">"Area of circle: %.2f\n"</span>, circ_area);
+    <span class="code-function">printf</span>(<span class="code-string">"Circumference of circle: %.2f\n"</span>, circumference);
+
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                    </div>
+                </div>
+                
+                <!-- Solution 2 -->
+                <div class="problem-card">
+                    <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">2. Interchange the contents of two locations C and D.</h3>
+                    <button class="solution-toggle">
+                        <span>Show/Hide Solution</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">int</span> C, D, temp;
+    <span class="code-function">printf</span>(<span class="code-string">"Enter value for C: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &C);
+    <span class="code-function">printf</span>(<span class="code-string">"Enter value for D: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &D);
+
+    <span class="code-function">printf</span>(<span class="code-string">"Before interchange: C = %d, D = %d\n"</span>, C, D);
+
+    <span class="code-comment">// Using a third variable</span>
+    temp = C;
+    C = D;
+    D = temp;
+
+    <span class="code-function">printf</span>(<span class="code-string">"After interchange: C = %d, D = %d\n"</span>, C, D);
+    
+    <span class="code-comment">// Without using a third variable</span>
+    <span class="code-comment">// C = C + D;</span>
+    <span class="code-comment">// D = C - D;</span>
+    <span class="code-comment">// C = C - D;</span>
+    <span class="code-comment">// printf("After second interchange (no third var): C = %d, D = %d\n", C, D);</span>
+
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                    </div>
+                </div>
+
+                <!-- Solution 3 -->
+                <div class="problem-card">
+                    <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">3. Calculate the sum of digits for a five-digit number.</h3>
+                    <button class="solution-toggle">
+                        <span>Show/Hide Solution</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">int</span> n, sum = <span class="code-number">0</span>, remainder;
+    <span class="code-function">printf</span>(<span class="code-string">"Enter a five-digit number: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &n);
+    
+    <span class="code-comment">// Make a copy to preserve original number if needed</span>
+    <span class="code-keyword">int</span> temp = n; 
+    
+    <span class="code-keyword">while</span> (temp != <span class="code-number">0</span>) {
+        remainder = temp % <span class="code-number">10</span>;
+        sum = sum + remainder;
+        temp = temp / <span class="code-number">10</span>;
+    }
+    
+    <span class="code-function">printf</span>(<span class="code-string">"Sum of digits: %d\n"</span>, sum);
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                    </div>
+                </div>
+
+                <!-- Solution 4 -->
+                <div class="problem-card">
+                    <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">4. Reverse a five-digit number.</h3>
+                    <button class="solution-toggle">
+                        <span>Show/Hide Solution</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">int</span> n, reversed_number = <span class="code-number">0</span>, remainder;
+    <span class="code-function">printf</span>(<span class="code-string">"Enter a five-digit number: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &n);
+    
+    <span class="code-keyword">while</span> (n != <span class="code-number">0</span>) {
+        remainder = n % <span class="code-number">10</span>;
+        reversed_number = reversed_number * <span class="code-number">10</span> + remainder;
+        n /= <span class="code-number">10</span>;
+    }
+    
+    <span class="code-function">printf</span>(<span class="code-string">"Reversed number: %d\n"</span>, reversed_number);
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                    </div>
+                </div>
+
+                <!-- Solution 5 -->
+                <div class="problem-card">
+                    <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">5. Sum of the first and last digit of a four-digit number.</h3>
+                    <button class="solution-toggle">
+                        <span>Show/Hide Solution</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">int</span> n, first_digit, last_digit, sum;
+    <span class="code-function">printf</span>(<span class="code-string">"Enter a four-digit number: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &n);
+    
+    last_digit = n % <span class="code-number">10</span>;
+    first_digit = n;
+    
+    <span class="code-keyword">while</span> (first_digit >= <span class="code-number">10</span>) {
+        first_digit = first_digit / <span class="code-number">10</span>;
+    }
+    
+    sum = first_digit + last_digit;
+    <span class="code-function">printf</span>(<span class="code-string">"Sum of first and last digit: %d\n"</span>, sum);
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CSE / MNC Content -->
+            <div id="cse-content" class="space-y-8 hidden">
+                 <!-- Solution 6 -->
+                <div class="problem-card">
+                    <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">6. Find the total number of illiterate men and women.</h3>
+                    <button class="solution-toggle">
+                        <span>Show/Hide Solution</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">long</span> total_pop = <span class="code-number">80000</span>;
+    <span class="code-keyword">long</span> total_men, total_women;
+    <span class="code-keyword">long</span> total_literacy, literate_men, literate_women;
+    <span class="code-keyword">long</span> illiterate_men, illiterate_women;
+
+    total_men = (<span class="code-number">52L</span> * total_pop) / <span class="code-number">100L</span>;
+    total_women = total_pop - total_men;
+    
+    total_literacy = (<span class="code-number">48L</span> * total_pop) / <span class="code-number">100L</span>;
+    literate_men = (<span class="code-number">35L</span> * total_pop) / <span class="code-number">100L</span>;
+    literate_women = total_literacy - literate_men;
+
+    illiterate_men = total_men - literate_men;
+    illiterate_women = total_women - literate_women;
+    
+    <span class="code-function">printf</span>(<span class="code-string">"Illiterate Men: %ld\n"</span>, illiterate_men);
+    <span class="code-function">printf</span>(<span class="code-string">"Illiterate Women: %ld\n"</span>, illiterate_women);
+
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                    </div>
+                </div>
+
+                <!-- Solution 7 -->
+                <div class="problem-card">
+                    <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">7. Calculate currency notes for a cashier.</h3>
+                    <button class="solution-toggle">
+                        <span>Show/Hide Solution</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">int</span> amount_in_hundreds, total_amount;
+    <span class="code-keyword">int</span> notes_100, notes_50, notes_10;
+
+    <span class="code-function">printf</span>(<span class="code-string">"Enter amount to be withdrawn (in hundreds): "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &amount_in_hundreds);
+
+    total_amount = amount_in_hundreds * <span class="code-number">100</span>;
+    <span class="code-function">printf</span>(<span class="code-string">"Amount: %d\n"</span>, total_amount);
+    
+    notes_100 = total_amount / <span class="code-number">100</span>;
+    <span class="code-keyword">int</span> remaining = total_amount % <span class="code-number">100</span>;
+    
+    notes_50 = remaining / <span class="code-number">50</span>;
+    remaining = remaining % <span class="code-number">50</span>;
+    
+    notes_10 = remaining / <span class="code-number">10</span>;
+
+    <span class="code-function">printf</span>(<span class="code-string">"Number of 100 rupee notes: %d\n"</span>, notes_100);
+    <span class="code-function">printf</span>(<span class="code-string">"Number of 50 rupee notes: %d\n"</span>, notes_50);
+    <span class="code-function">printf</span>(<span class="code-string">"Number of 10 rupee notes: %d\n"</span>, notes_10);
+
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                    </div>
+                </div>
+
+                <!-- Solution 8 -->
+                <div class="problem-card">
+                    <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">8. Find the cost price of one item.</h3>
+                    <button class="solution-toggle">
+                        <span>Show/Hide Solution</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">float</span> selling_price_15, profit_15, cost_price_15, cost_price_1;
+    
+    <span class="code-function">printf</span>(<span class="code-string">"Enter total selling price of 15 items: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%f"</span>, &selling_price_15);
+    
+    <span class="code-function">printf</span>(<span class="code-string">"Enter total profit: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%f"</span>, &profit_15);
+    
+    cost_price_15 = selling_price_15 - profit_15;
+    cost_price_1 = cost_price_15 / <span class="code-number">15.0</span>;
+    
+    <span class="code-function">printf</span>(<span class="code-string">"Cost price of one item: %.2f\n"</span>, cost_price_1);
+    
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                    </div>
+                </div>
+
+                <!-- Solution 9 -->
+                <div class="problem-card">
+                    <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">9. Print a new number by adding one to each of its digits.</h3>
+                    <button class="solution-toggle">
+                        <span>Show/Hide Solution</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">int</span> number, new_number = <span class="code-number">0</span>, remainder, place_value = <span class="code-number">1</span>;
+    <span class="code-function">printf</span>(<span class="code-string">"Enter a five-digit number: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &number);
+
+    <span class="code-keyword">while</span> (number > <span class="code-number">0</span>) {
+        remainder = number % <span class="code-number">10</span>;
+        <span class="code-keyword">int</span> new_digit = (remainder + <span class="code-number">1</span>) % <span class="code-number">10</span>;
+        new_number = new_number + new_digit * place_value;
+        place_value *= <span class="code-number">10</span>;
+        number /= <span class="code-number">10</span>;
+    }
+
+    <span class="code-function">printf</span>(<span class="code-string">"New number: %d\n"</span>, new_number);
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                    </div>
+                </div>
+
+                <!-- Solution 10 -->
+                <div class="problem-card">
+                    <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">10. Calculate insurance premium based on given rules.</h3>
+                    <button class="solution-toggle">
+                        <span>Show/Hide Solution</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="code-preprocessor">#include &lt;string.h&gt;</span>
+
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">char</span> health[<span class="code-number">20</span>], location[<span class="code-number">20</span>], sex[<span class="code-number">10</span>];
+    <span class="code-keyword">int</span> age;
+
+    <span class="code-function">printf</span>(<span class="code-string">"Enter health (excellent/poor): "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%s"</span>, health);
+    <span class="code-function">printf</span>(<span class="code-string">"Enter age: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &age);
+    <span class="code-function">printf</span>(<span class="code-string">"Enter location (city/village): "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%s"</span>, location);
+    <span class="code-function">printf</span>(<span class="code-string">"Enter sex (male/female): "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%s"</span>, sex);
+
+    <span class="code-keyword">if</span> (strcmp(health, <span class="code-string">"excellent"</span>) == <span class="code-number">0</span> && (age >= <span class="code-number">25</span> && age <= <span class="code-number">35</span>) && strcmp(location, <span class="code-string">"city"</span>) == <span class="code-number">0</span>) {
+        <span class="code-keyword">if</span> (strcmp(sex, <span class="code-string">"male"</span>) == <span class="code-number">0</span>) {
+            <span class="code-function">printf</span>(<span class="code-string">"Status: Insured\n"</span>);
+            <span class="code-function">printf</span>(<span class="code-string">"Premium Rate: Rs. 4 per thousand\n"</span>);
+            <span class="code-function">printf</span>(<span class="code-string">"Maximum Policy Amount: Rs. 2,00,000\n"</span>);
+        } <span class="code-keyword">else if</span> (strcmp(sex, <span class="code-string">"female"</span>) == <span class="code-number">0</span>) {
+            <span class="code-function">printf</span>(<span class="code-string">"Status: Insured\n"</span>);
+            <span class="code-function">printf</span>(<span class="code-string">"Premium Rate: Rs. 3 per thousand\n"</span>);
+            <span class="code-function">printf</span>(<span class="code-string">"Maximum Policy Amount: Rs. 1,00,000\n"</span>);
+        } <span class="code-keyword">else</span> {
+            <span class="code-function">printf</span>(<span class="code-string">"Status: Not Insured\n"</span>);
+        }
+    } <span class="code-keyword">else if</span> (strcmp(health, <span class="code-string">"poor"</span>) == <span class="code-number">0</span> && (age >= <span class="code-number">25</span> && age <= <span class="code-number">35</span>) && strcmp(location, <span class="code-string">"village"</span>) == <span class="code-number">0</span> && strcmp(sex, <span class="code-string">"male"</span>) == <span class="code-number">0</span>) {
+        <span class="code-function">printf</span>(<span class="code-string">"Status: Insured\n"</span>);
+        <span class="code-function">printf</span>(<span class="code-string">"Premium Rate: Rs. 6 per thousand\n"</span>);
+        <span class="code-function">printf</span>(<span class="code-string">"Maximum Policy Amount: Rs. 10,000\n"</span>);
+    } <span class="code-keyword">else</span> {
+        <span class="code-function">printf</span>(<span class="code-string">"Status: Not Insured\n"</span>);
+    }
+
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <footer class="text-center mt-8">
+         <a href="./index.html" class="btn-home inline-block py-3 px-6 text-lg">Back to Main Hub</a>
+    </footer>
+
+    <script>
+        function showTab(tabName) {
+            document.getElementById('ece-content').classList.add('hidden');
+            document.getElementById('cse-content').classList.add('hidden');
+            document.getElementById('ece-tab').classList.remove('active');
+            document.getElementById('cse-tab').classList.remove('active');
+            document.getElementById(tabName + '-content').classList.remove('hidden');
+            document.getElementById(tabName + '-tab').classList.add('active');
+        }
+
+        document.querySelectorAll('.solution-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const solutionContent = button.nextElementSibling;
+                button.classList.toggle('open');
+                if (solutionContent.style.maxHeight) {
+                    solutionContent.style.maxHeight = null;
+                } else {
+                    solutionContent.style.maxHeight = solutionContent.scrollHeight + "px";
+                }
+            });
+        });
+
+        document.querySelectorAll('pre').forEach(block => {
+            const copyButton = document.createElement('button');
+            copyButton.textContent = 'Copy';
+            copyButton.className = 'copy-btn';
+            copyButton.addEventListener('click', () => {
+                const textToCopy = block.innerText.replace('Copy\n', ''); // Remove the button text from copy
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    copyButton.textContent = 'Copied!';
+                    setTimeout(() => { copyButton.textContent = 'Copy'; }, 2000);
+                }, () => {
+                    copyButton.textContent = 'Failed!';
+                });
+            });
+            block.appendChild(copyButton);
+        });
+    </script>
+</body>
+</html>
+
