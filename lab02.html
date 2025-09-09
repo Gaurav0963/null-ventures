@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 2</title>
+    <link rel="icon" type="image/png" href="favicon-16x16.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --hulk-green: #4caf50;
+            --hulk-green-light: #66bb6a;
+            --hulk-purple: #7e57c2;
+            --hulk-purple-light: #9575cd;
+            --hulk-dark: #212121;
+            --light-text: #eceff1;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--hulk-dark);
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.25), transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(126, 87, 194, 0.2), transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(76, 175, 80, 0.1), transparent 70%);
+            color: var(--light-text);
+        }
+        .main-container {
+            max-width: 64rem; 
+            margin: auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 25px rgba(76, 175, 80, 0.4);
+        }
+        .header-title {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 4px;
+            font-weight: 400;
+            color: var(--hulk-green);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        .problem-card {
+            background-color: rgba(0,0,0,0.3);
+            border-left: 5px solid var(--hulk-purple);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            border-left-color: var(--hulk-green);
+        }
+        .io-box {
+            background-color: var(--hulk-dark);
+            color: #f1f1f1;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            border: 1px dashed var(--hulk-purple-light);
+        }
+        .btn-home {
+            background-color: var(--hulk-purple);
+            color: var(--light-text);
+            border-radius: 10px;
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        .btn-home:hover {
+            background-color: var(--hulk-purple-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(126, 87, 194, 0.5);
+        }
+        .tab-btn {
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 2px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.25rem;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            color: var(--light-text);
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+            transform: translateY(2px);
+        }
+        .tab-btn.active {
+            color: var(--hulk-green-light);
+            border-bottom-color: var(--hulk-green-light);
+        }
+        .tab-btn:hover:not(.active) {
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+        .tab-content.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="main-container w-full p-6 md:p-8">
+        <header class="text-center mb-6">
+            <h1 class="header-title text-5xl md:text-6xl">Assignment 2</h1>
+        </header>
+
+        <main>
+            <!-- Tabs -->
+            <div class="flex border-b-2 border-hulk-green mb-8">
+                <button id="ece-tab" class="tab-btn active" onclick="showTab('ece')">ECE / MAE</button>
+                <button id="cse-tab" class="tab-btn" onclick="showTab('cse')">CSE / MNC</button>
+            </div>
+
+            <!-- ECE / MAE Content -->
+            <div id="ece-content" class="tab-content">
+                <div class="space-y-8">
+                    <!-- Problem 1 -->
+                    <div class="problem-card">
+                        <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">1. The length & breadth of a rectangle and radius of a circle are input through the keyboard. Write a program to calculate the area & perimeter of the rectangle, and the area & circumference of the circle.</h3>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                        <pre class="io-box mb-4">Enter length of rectangle: 10
+Enter breadth of rectangle: 5
+Enter radius of circle: 7</pre>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                        <pre class="io-box">Area of rectangle: 50.00
+Perimeter of rectangle: 30.00
+Area of circle: 153.94
+Circumference of circle: 43.98</pre>
+                    </div>
+                    <!-- Problem 2 -->
+                    <div class="problem-card">
+                        <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">2. Two numbers are input through the keyboard into two locations C and D. Write a program to interchange the contents of C and D.</h3>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                        <pre class="io-box mb-4">Enter value for C: 10
+Enter value for D: 20</pre>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                        <pre class="io-box">Before interchange: C = 10, D = 20
+After interchange: C = 20, D = 10</pre>
+                    </div>
+                    <!-- Problem 3 -->
+                    <div class="problem-card">
+                        <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">3. If a five-digit number is input through the keyboard, write a program to calculate the sum of its digits. (Hint: Use the modulus operator '%')</h3>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                        <pre class="io-box mb-4">Enter a five-digit number: 12345</pre>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                        <pre class="io-box">Sum of digits: 15</pre>
+                    </div>
+                    <!-- Problem 4 -->
+                    <div class="problem-card">
+                        <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">4. If a five-digit number is input through the keyboard, write a program to reverse the number.</h3>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                        <pre class="io-box mb-4">Enter a five-digit number: 54321</pre>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                        <pre class="io-box">Reversed number: 12345</pre>
+                    </div>
+                    <!-- Problem 5 -->
+                    <div class="problem-card">
+                        <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">5. If a four-digit number is input through the keyboard, write a program to obtain the sum of the first and last digit of this number.</h3>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                        <pre class="io-box mb-4">Enter a four-digit number: 7892</pre>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                        <pre class="io-box">Sum of first and last digit: 9</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CSE / MNC Content -->
+            <div id="cse-content" class="tab-content hidden">
+                <div class="space-y-8">
+                    <!-- Problem 6 -->
+                    <div class="problem-card">
+                        <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">6. In a town, the percentage of men is 52. The percentage of total literacy is 48. If total percentage of literate men is 35% of the total population, write a program to find the total number of illiterate men and women if the population of the town is 80,000.</h3>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Problem Data:</h4>
+                        <pre class="io-box mb-4">Total Population: 80,000
+Percentage of men: 52%
+Total literacy: 48%
+Literate men: 35% of total population</pre>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                        <pre class="io-box">Illiterate Men: 13600
+Illiterate Women: 28000</pre>
+                    </div>
+                    <!-- Problem 7 -->
+                    <div class="problem-card">
+                        <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">7. A cashier is equipped with currency notes in denominations of ₹10, ₹50, and ₹100. When a withdrawal amount is entered via keyboard—expressed in hundreds (e.g., 5 for ₹500)—determine how many notes of each denomination the cashier must dispense to fulfill the requested amount.</h3>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                        <pre class="io-box mb-4">Enter amount to be withdrawn (in hundreds): 18</pre>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                        <pre class="io-box">Amount: 1800
+Number of 100 rupee notes: 18
+Number of 50 rupee notes: 0
+Number of 10 rupee notes: 0</pre>
+                    </div>
+                    <!-- Problem 8 -->
+                    <div class="problem-card">
+                        <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">8. If the total selling price of 15 items and the total profit earned on them is input through the keyboard, write a program to find the cost price of one item.</h3>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                        <pre class="io-box mb-4">Enter total selling price of 15 items: 2250
+Enter total profit: 750</pre>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                        <pre class="io-box">Cost price of one item: 100.00</pre>
+                    </div>
+                    <!-- Problem 9 -->
+                    <div class="problem-card">
+                        <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">9. If a five-digit number is input through the keyboard, write a program to print a new number by adding one to each of its digits.</h3>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                        <pre class="io-box mb-4">Enter a five-digit number: 12391</pre>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                        <pre class="io-box">New number: 23402</pre>
+                    </div>
+                    <!-- Problem 10 -->
+                    <div class="problem-card">
+                        <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">10. Write a program to output whether a person should be insured or not, his/her premium rate and maximum policy amount for which he/she can be insured based on the following rules.</h3>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Insurance Rules:</h4>
+                        <div class="io-box mb-4 text-base">
+                            <p class="mb-2">If a person’s health is excellent and the person is between 25 and 35 years of age and lives in a city and is male then the premium is Rs.4 per thousand and his policy amount cannot exceed Rs.2 lakhs.</p>
+                            <p class="mb-2">If a person satisfies all the above conditions except that the sex is female, then the premium is Rs.3 per thousand and her policy amount cannot exceed Rs. 1 lakh.</p>
+                            <p class="mb-2">If a person’s health is poor and the person is between 25 and 35 years of age and lives in a village and is male then the premium amount is Rs. 6 per thousand and his policy cannot exceed Rs. 10,000.</p>
+                            <p>In all other cases, the person is not insured.</p>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input 1:</h4>
+                        <pre class="io-box mb-4">Health: excellent, Age: 30, Location: city, Sex: male</pre>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output 1:</h4>
+                        <pre class="io-box">Status: Insured
+Premium Rate: Rs. 4 per thousand
+Maximum Policy Amount: Rs. 2,00,000</pre>
+                        <h4 class="text-lg font-semibold mt-4 mb-2 text-hulk-purple-light">Sample Input 2:</h4>
+                        <pre class="io-box mb-4">Health: poor, Age: 40, Location: city, Sex: female</pre>
+                        <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output 2:</h4>
+                        <pre class="io-box">Status: Not Insured</pre>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="text-center mt-8">
+         <a href="./index.html" class="btn-home inline-block py-3 px-6 text-lg">Back to Main Hub</a>
+    </footer>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all content
+            document.getElementById('ece-content').classList.add('hidden');
+            document.getElementById('cse-content').classList.add('hidden');
+
+            // Deactivate all tabs
+            document.getElementById('ece-tab').classList.remove('active');
+            document.getElementById('cse-tab').classList.remove('active');
+
+            // Show selected content and activate tab
+            document.getElementById(tabName + '-content').classList.remove('hidden');
+            document.getElementById(tabName + '-tab').classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
