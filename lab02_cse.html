@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab02 CSE</title>
+    <link rel="icon" type="image/png" href="favicon-16x16.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --hulk-green: #4caf50;
+            --hulk-green-light: #66bb6a;
+            --hulk-purple: #7e57c2;
+            --hulk-purple-light: #9575cd;
+            --hulk-dark: #212121;
+            --light-text: #eceff1;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--hulk-dark);
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.25), transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(126, 87, 194, 0.2), transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(76, 175, 80, 0.1), transparent 70%);
+            color: var(--light-text);
+        }
+        .main-container {
+            max-width: 64rem; 
+            margin: auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 25px rgba(76, 175, 80, 0.4);
+        }
+        .header-title {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 4px;
+            font-weight: 400;
+            color: var(--hulk-green);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        .problem-card {
+            background-color: rgba(0,0,0,0.3);
+            border-left: 5px solid var(--hulk-purple);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            border-left-color: var(--hulk-green);
+        }
+        .io-box {
+            background-color: var(--hulk-dark);
+            color: #f1f1f1;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre;
+            border: 1px dashed var(--hulk-purple-light);
+        }
+        .btn-home {
+            background-color: var(--hulk-purple);
+            color: var(--light-text);
+            border-radius: 10px;
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        .btn-home:hover {
+            background-color: var(--hulk-purple-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(126, 87, 194, 0.5);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="main-container w-full p-6 md:p-8">
+        <header class="text-center mb-8">
+            <h1 class="header-title text-5xl md:text-6xl">Assignment-02 CSE</h1>
+        </header>
+
+        <main class="space-y-8">
+            <!-- Problem 1 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">1. Write a program to print all prime numbers from 1 to 300. (Hint: Use nested loops, break, and continue)</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box" style="white-space: pre-wrap;">2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293</pre>
+            </div>
+            <!-- Problem 2 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">2. Write a program to fill the entire screen with a smiling face. The smiling face has an ASCII value 1.</h3>
+                 <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                 <pre class="io-box">The entire terminal screen will be filled with smiling face characters (☺).</pre>
+            </div>
+            <!-- Problem 3 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">3. Write a program to add first seven terms of the following series using a for loop: 1/1! + 2/2! + 3/3! + ...</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">Sum of the first 7 terms is: 1.718254</pre>
+            </div>
+            <!-- Problem 4 -->
+             <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">4. Write a program to generate all combinations of 1, 2 and 3 using for loop.</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">1 1 1
+1 1 2
+1 1 3
+1 2 1
+1 2 2
+1 2 3
+1 3 1
+1 3 2
+1 3 3
+2 1 1
+... (and so on) ...
+3 3 3</pre>
+            </div>
+            <!-- Problem 5 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">5. According to a study, the approximate level of intelligence of a person can be calculated using the following formula: i = 2 + (y + 0.5x). Write a program which will produce a table of values of i, y and x, where y varies from 1 to 6, and, for each value of y, x varies from 5.5 to 12.5 in steps of 0.5.</h3>
+                 <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                 <pre class="io-box">A table showing columns for 'i', 'y', and 'x' with calculated values.
+Example rows:
+y=1, x=5.5, i=5.75
+y=1, x=6.0, i=6.00
+...
+y=6, x=12.5, i=14.25</pre>
+            </div>
+            <!-- Problem 6 (Corrected) -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">6. Write a program to produce the following output text.</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">A B C D E F G F E D C B A
+A B C D E F   F E D C B A
+A B C D E       E D C B A
+A B C D           D C B A
+A B C               C B A
+A B                   B A
+A                       A</pre>
+            </div>
+            <!-- Problem 7 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">7. Write a program to fill the entire screen with diamond and heart alternately. The ASCII value for heart is 3 and that of diamond is 4.</h3>                 
+            </div>
+            <!-- Problem 8 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">8. Write a program to print the multiplication table of the number entered by the user.</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                <pre class="io-box">Enter a number: 29</pre>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">29 * 1 = 29
+29 * 2 = 58
+...
+29 * 10 = 290</pre>
+            </div>
+            <!-- Problem 9 & 10 are visual patterns -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">9. Write a program to produce the following output:</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+<pre class="io-box">        *
+      * * *
+    * * * * *
+  * * * * * * *
+* * * * * * * * *</pre>
+            </div>
+             <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">10. Write a program to produce the following output:</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+<pre class="io-box">        A
+      A B A
+    A B C B A
+  A B C D C B A
+A B C D E D C B A</pre>
+            </div>
+             <!-- Problem 11 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">11. A machine is purchased for Rs. 6000 and has a salvage value of Rs. 2000. It produces earnings of Rs. 1000 per year. If 12% can be earned on alternate investments, what is the minimum life of the machine to be a more attractive investment?</h3>
+                 <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                 <pre class="io-box">The minimum life of the machine should be 8 years.</pre>
+            </div>
+             <!-- Problem 12 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">12. Using the formula a = p(1 + r/q)^(nq), write a program to read 10 sets of p, r, n & q and calculate the corresponding amount 'a'.</h3>
+             </div>
+             <!-- All other questions -->
+             <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">13. Calculate the sum of the first seven terms of the natural logarithm series for a given x.</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                <pre class="io-box">Enter value of x: 2</pre>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">Sum of the first seven terms: 0.685639</pre>
+            </div>
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">14. Basic salary of Ramesh is 10000. Calculate his gross salary (Basic + DA + HRA). (DA = 40% of basic, HRA = 20% of basic).</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                <pre class="io-box">Enter basic salary: 10000</pre>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">Gross Salary: 16000.00</pre>
+            </div>
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">15. Convert distance in km to meters, feet, inches, and centimeters.</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                <pre class="io-box">Enter distance in km: 10</pre>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">Distance in meters: 10000.00
+Distance in feet: 32808.40
+Distance in inches: 393701.00
+Distance in centimeters: 1000000.00</pre>
+            </div>
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">16. Find aggregate and percentage marks for five subjects.</h3>
+                 <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                <pre class="io-box">Enter marks for subject 1: 80
+Enter marks for subject 2: 85
+Enter marks for subject 3: 90
+Enter marks for subject 4: 75
+Enter marks for subject 5: 95</pre>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">Aggregate Marks: 425
+Percentage Marks: 85.00%</pre>
+            </div>
+             <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">17. Convert temperature from Fahrenheit to Centigrade.</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                <pre class="io-box">Enter temperature in Fahrenheit: 98.6</pre>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">Temperature in Centigrade: 37.00</pre>
+            </div>
+            <!-- ... remaining questions ... -->
+        </main>
+        <footer class="text-center mt-8">
+             <a href="./index.html" class="btn-home inline-block py-3 px-6 text-lg">Back to Main Hub</a>
+        </footer>
+    </div>
+</body>
+</html>
+
