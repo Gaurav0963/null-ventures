@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 03</title>
+    <link rel="icon" type="image/png" href="favicon-16x16.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --hulk-green: #4caf50;
+            --hulk-green-light: #66bb6a;
+            --hulk-purple: #7e57c2;
+            --hulk-purple-light: #9575cd;
+            --hulk-dark: #212121;
+            --light-text: #eceff1;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--hulk-dark);
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.25), transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(126, 87, 194, 0.2), transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(76, 175, 80, 0.1), transparent 70%);
+            color: var(--light-text);
+        }
+        .main-container {
+            max-width: 64rem; 
+            margin: auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 25px rgba(76, 175, 80, 0.4);
+        }
+        .header-title {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 4px;
+            font-weight: 400;
+            color: var(--hulk-green);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        .problem-card {
+            background-color: rgba(0,0,0,0.3);
+            border-left: 5px solid var(--hulk-purple);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            border-left-color: var(--hulk-green);
+        }
+        .io-box {
+            background-color: var(--hulk-dark);
+            color: #f1f1f1;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre;
+            border: 1px dashed var(--hulk-purple-light);
+        }
+        .btn-home {
+            background-color: var(--hulk-purple);
+            color: var(--light-text);
+            border-radius: 10px;
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        .btn-home:hover {
+            background-color: var(--hulk-purple-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(126, 87, 194, 0.5);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="main-container w-full p-6 md:p-8">
+        <header class="text-center mb-8">
+            <h1 class="header-title text-5xl md:text-6xl">Assignment 3</h1>
+        </header>
+
+        <main class="space-y-8">
+            <!-- Problem 1 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">1. Write a program that takes two integers and an operator (+, -, *, /, %) as input and performs the operation using a switch statement.</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                <pre class="io-box">Enter two integers: 10 5
+Enter an operator (+, -, *, /, %): *</pre>
+                <h4 class="text-lg font-semibold mt-4 mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">10 * 5 = 50</pre>
+            </div>
+
+            <!-- Problem 2 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">2. Write a program that take a character input and check whether it’s a vowel or a consonant using a switch.</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                <pre class="io-box">Enter a character: U</pre>
+                <h4 class="text-lg font-semibold mt-4 mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">U is a vowel.</pre>
+            </div>
+            
+            <!-- Problem 3 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">3. Create a program that displays a menu for: 1. Check Prime, 2. Check Even/Odd, 3. Find Factorial, 4. Exit.</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Interaction:</h4>
+                <pre class="io-box">Menu:
+1. Check Prime
+2. Check Even/Odd
+3. Find Factorial
+4. Exit
+Enter your choice: 3
+Enter a number: 5</pre>
+                <h4 class="text-lg font-semibold mt-4 mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">Factorial of 5 is 120.</pre>
+            </div>
+
+            <!-- Problem 4 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">4. Write a program that takes n integers in an array. Print the sum and average.</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                <pre class="io-box">Enter the number of elements: 5
+Enter 5 integers: 10 20 30 40 50</pre>
+                <h4 class="text-lg font-semibold mt-4 mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">Sum: 150
+Average: 30.00</pre>
+            </div>
+
+            <!-- Problem 5 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">5. Write a program to find the maximum and minimum elements in an integer array.</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                <pre class="io-box">Enter the number of elements: 7
+Enter 7 integers: 45 12 89 2 65 33 101</pre>
+                <h4 class="text-lg font-semibold mt-4 mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">Maximum element: 101
+Minimum element: 2</pre>
+            </div>
+            
+            <!-- Problem 6 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">6. Reverse a 1D array without using any extra array.</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                <pre class="io-box">Enter the number of elements: 6
+Enter 6 integers: 1 2 3 4 5 6</pre>
+                <h4 class="text-lg font-semibold mt-4 mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">Original array: 1 2 3 4 5 6
+Reversed array: 6 5 4 3 2 1</pre>
+            </div>
+
+            <!-- Problem 7 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">7. Count the frequency of each number in an array of size n, assuming values range from 0 to 9.</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                <pre class="io-box">Enter array size: 12
+Enter elements (0-9): 1 2 8 2 1 5 8 9 1 2 0 8</pre>
+                <h4 class="text-lg font-semibold mt-4 mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">Frequency of 0 is 1
+Frequency of 1 is 3
+Frequency of 2 is 3
+Frequency of 3 is 0
+Frequency of 4 is 0
+Frequency of 5 is 1
+Frequency of 6 is 0
+Frequency of 7 is 0
+Frequency of 8 is 3
+Frequency of 9 is 1</pre>
+            </div>
+
+            <!-- Problem 8 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">8. Write a program to remove duplicate elements from an integer array.</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                <pre class="io-box">Enter array size: 8
+Enter elements: 1 2 5 2 4 8 5 4</pre>
+                <h4 class="text-lg font-semibold mt-4 mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">Array after removing duplicates: 1 2 5 4 8</pre>
+            </div>
+
+            <!-- Problem 9 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">9. Write a program to multiply two matrices (m x n and n x p).</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                <pre class="io-box">Enter rows and columns for first matrix: 2 3
+Enter elements of matrix 1:
+1 2 3
+4 5 6
+Enter rows and columns for second matrix: 3 2
+Enter elements of matrix 2:
+7 8
+9 10
+11 12</pre>
+                <h4 class="text-lg font-semibold mt-4 mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">Resultant Matrix:
+58 64
+139 154</pre>
+            </div>
+
+            <!-- Problem 10 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">10. Write a program that takes two 3x3 matrices as input and print their sum.</h3>
+                <h4 class="text-lg font-semibold mb-2 text-hulk-purple-light">Sample Input:</h4>
+                <pre class="io-box">Enter elements of matrix 1 (3x3):
+1 1 1
+2 2 2
+3 3 3
+Enter elements of matrix 2 (3x3):
+9 9 9
+8 8 8
+7 7 7</pre>
+                <h4 class="text-lg font-semibold mt-4 mb-2 text-hulk-purple-light">Expected Output:</h4>
+                <pre class="io-box">Sum of Matrices:
+10 10 10
+10 10 10
+10 10 10</pre>
+            </div>
+        </main>
+
+        <footer class="text-center mt-8">
+             <a href="./index.html" class="btn-home inline-block py-3 px-6 text-lg">Back to Main Hub</a>
+        </footer>
+    </div>
+</body>
+</html>
