@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab03 Solutions</title>
+    <link rel="icon" type="image/png" href="favicon-16x16.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Anton&family=Roboto:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --hulk-green: #4caf50;
+            --hulk-green-light: #66bb6a;
+            --hulk-purple: #7e57c2;
+            --hulk-purple-light: #9575cd;
+            --hulk-dark: #212121;
+            --light-text: #eceff1;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--hulk-dark);
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.25), transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(126, 87, 194, 0.2), transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(76, 175, 80, 0.1), transparent 70%);
+            color: var(--light-text);
+        }
+        .main-container {
+            max-width: 64rem; 
+            margin: auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 25px rgba(76, 175, 80, 0.4);
+        }
+        .header-title {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 4px;
+            color: var(--hulk-green);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        .problem-card {
+            background-color: rgba(0,0,0,0.3);
+            border-left: 5px solid var(--hulk-purple);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+        .solution-toggle {
+            background-color: rgba(126, 87, 194, 0.2);
+            border: 1px solid var(--hulk-purple);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: var(--hulk-purple-light);
+            transition: background-color 0.3s;
+        }
+        .solution-toggle:hover {
+            background-color: rgba(126, 87, 194, 0.4);
+        }
+        .solution-toggle svg {
+            transition: transform 0.3s ease;
+        }
+        .solution-toggle.open svg {
+            transform: rotate(180deg);
+        }
+        .solution-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background-color: #1a1a1a;
+            border-radius: 0 0 8px 8px;
+        }
+        pre {
+            font-family: 'Fira Code', monospace;
+            background-color: var(--hulk-dark);
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            position: relative;
+        }
+        .code-keyword { color: #c792ea; font-weight: bold; }
+        .code-preprocessor { color: #89ddff; }
+        .code-string { color: #c3e88d; }
+        .code-comment { color: #546e7a; font-style: italic; }
+        .code-function { color: #82aaff; }
+        .code-number { color: #f78c6c; }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--hulk-purple);
+            color: var(--light-text);
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        pre:hover .copy-btn {
+            opacity: 1;
+        }
+        .btn-home {
+            background-color: var(--hulk-purple);
+            color: var(--light-text);
+            border-radius: 10px;
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        .btn-home:hover {
+            background-color: var(--hulk-purple-light);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="main-container w-full p-6 md:p-8">
+        <header class="text-center mb-6">
+            <h1 class="header-title text-5xl md:text-6xl">Assignment 3 - Solutions</h1>
+        </header>
+
+        <main class="space-y-8">
+            <!-- Solution 1 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">1. Simple calculator using switch statement.</h3>
+                <button class="solution-toggle">
+                    <span>Show/Hide Solution</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">char</span> op;
+    <span class="code-keyword">double</span> first, second;
+    <span class="code-function">printf</span>(<span class="code-string">"Enter an operator (+, -, *, /, %%): "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">" %c"</span>, &op); <span class="code-comment">// Added space to consume whitespace</span>
+    <span class="code-function">printf</span>(<span class="code-string">"Enter two operands: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%lf %lf"</span>, &first, &second);
+
+    <span class="code-keyword">switch</span> (op) {
+        <span class="code-keyword">case</span> <span class="code-string">'+'</span>:
+            <span class="code-function">printf</span>(<span class="code-string">"%.1lf + %.1lf = %.1lf\n"</span>, first, second, first + second);
+            <span class="code-keyword">break</span>;
+        <span class="code-keyword">case</span> <span class="code-string">'-'</span>:
+            <span class="code-function">printf</span>(<span class="code-string">"%.1lf - %.1lf = %.1lf\n"</span>, first, second, first - second);
+            <span class="code-keyword">break</span>;
+        <span class="code-keyword">case</span> <span class="code-string">'*'</span>:
+            <span class="code-function">printf</span>(<span class="code-string">"%.1lf * %.1lf = %.1lf\n"</span>, first, second, first * second);
+            <span class="code-keyword">break</span>;
+        <span class="code-keyword">case</span> <span class="code-string">'/'</span>:
+            <span class="code-keyword">if</span> (second != <span class="code-number">0</span>)
+                <span class="code-function">printf</span>(<span class="code-string">"%.1lf / %.1lf = %.1lf\n"</span>, first, second, first / second);
+            <span class="code-keyword">else</span>
+                <span class="code-function">printf</span>(<span class="code-string">"Error! Division by zero.\n"</span>);
+            <span class="code-keyword">break</span>;
+        <span class="code-keyword">case</span> <span class="code-string">'%'</span>:
+            <span class="code-keyword">if</span> ((<span class="code-keyword">int</span>)second != <span class="code-number">0</span>)
+                 <span class="code-function">printf</span>(<span class="code-string">"%d %% %d = %d\n"</span>, (<span class="code-keyword">int</span>)first, (<span class="code-keyword">int</span>)second, (<span class="code-keyword">int</span>)first % (<span class="code-keyword">int</span>)second);
+            <span class="code-keyword">else</span>
+                 <span class="code-function">printf</span>(<span class="code-string">"Error! Division by zero.\n"</span>);
+             <span class="code-keyword">break</span>;
+        <span class="code-keyword">default</span>:
+            <span class="code-function">printf</span>(<span class="code-string">"Error! operator is not correct\n"</span>);
+    }
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                </div>
+            </div>
+
+            <!-- Solution 2 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">2. Check if a character is a vowel or consonant.</h3>
+                <button class="solution-toggle">
+                    <span>Show/Hide Solution</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="code-preprocessor">#include &lt;ctype.h&gt;</span> <span class="code-comment">// For tolower() function</span>
+
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">char</span> c;
+    <span class="code-function">printf</span>(<span class="code-string">"Enter a character: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">" %c"</span>, &c);
+
+    <span class="code-keyword">if</span> ((c >= <span class="code-string">'a'</span> && c <= <span class="code-string">'z'</span>) || (c >= <span class="code-string">'A'</span> && c <= <span class="code-string">'Z'</span>)) {
+        <span class="code-keyword">switch</span> (tolower(c)) {
+            <span class="code-keyword">case</span> <span class="code-string">'a'</span>:
+            <span class="code-keyword">case</span> <span class="code-string">'e'</span>:
+            <span class="code-keyword">case</span> <span class="code-string">'i'</span>:
+            <span class="code-keyword">case</span> <span class="code-string">'o'</span>:
+            <span class="code-keyword">case</span> <span class="code-string">'u'</span>:
+                <span class="code-function">printf</span>(<span class="code-string">"%c is a vowel.\n"</span>, c);
+                <span class="code-keyword">break</span>;
+            <span class="code-keyword">default</span>:
+                <span class="code-function">printf</span>(<span class="code-string">"%c is a consonant.\n"</span>, c);
+        }
+    } <span class="code-keyword">else</span> {
+        <span class="code-function">printf</span>(<span class="code-string">"%c is not an alphabet.\n"</span>, c);
+    }
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                </div>
+            </div>
+
+            <!-- Solution 3 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">3. Menu-driven program.</h3>
+                <button class="solution-toggle">
+                    <span>Show/Hide Solution</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">int</span> choice, n, i, is_prime;
+    <span class="code-keyword">unsigned long long</span> factorial;
+
+    <span class="code-keyword">do</span> {
+        <span class="code-function">printf</span>(<span class="code-string">"\n--- Menu ---\n"</span>);
+        <span class="code-function">printf</span>(<span class="code-string">"1. Check Prime\n"</span>);
+        <span class="code-function">printf</span>(<span class="code-string">"2. Check Even/Odd\n"</span>);
+        <span class="code-function">printf</span>(<span class="code-string">"3. Find Factorial\n"</span>);
+        <span class="code-function">printf</span>(<span class="code-string">"4. Exit\n"</span>);
+        <span class="code-function">printf</span>(<span class="code-string">"Enter your choice: "</span>);
+        <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &choice);
+
+        <span class="code-keyword">switch</span>(choice) {
+            <span class="code-keyword">case</span> <span class="code-number">1</span>:
+                <span class="code-function">printf</span>(<span class="code-string">"Enter a number to check if it's prime: "</span>);
+                <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &n);
+                is_prime = <span class="code-number">1</span>;
+                <span class="code-keyword">if</span> (n <= <span class="code-number">1</span>) is_prime = <span class="code-number">0</span>;
+                <span class="code-keyword">for</span>(i = <span class="code-number">2</span>; i * i <= n; i++) {
+                    <span class="code-keyword">if</span> (n % i == <span class="code-number">0</span>) {
+                        is_prime = <span class="code-number">0</span>;
+                        <span class="code-keyword">break</span>;
+                    }
+                }
+                <span class="code-keyword">if</span>(is_prime) <span class="code-function">printf</span>(<span class="code-string">"%d is a prime number.\n"</span>, n);
+                <span class="code-keyword">else</span> <span class="code-function">printf</span>(<span class="code-string">"%d is not a prime number.\n"</span>, n);
+                <span class="code-keyword">break</span>;
+            <span class="code-keyword">case</span> <span class="code-number">2</span>:
+                <span class="code-function">printf</span>(<span class="code-string">"Enter a number to check if it's even or odd: "</span>);
+                <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &n);
+                <span class="code-keyword">if</span>(n % <span class="code-number">2</span> == <span class="code-number">0</span>) <span class="code-function">printf</span>(<span class="code-string">"%d is an even number.\n"</span>, n);
+                <span class="code-keyword">else</span> <span class="code-function">printf</span>(<span class="code-string">"%d is an odd number.\n"</span>, n);
+                <span class="code-keyword">break</span>;
+            <span class="code-keyword">case</span> <span class="code-number">3</span>:
+                <span class="code-function">printf</span>(<span class="code-string">"Enter a number to find its factorial: "</span>);
+                <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &n);
+                <span class="code-keyword">if</span> (n < <span class="code-number">0</span>) {
+                    <span class="code-function">printf</span>(<span class="code-string">"Factorial is not defined for negative numbers.\n"</span>);
+                } <span class="code-keyword">else</span> {
+                    factorial = <span class="code-number">1</span>;
+                    <span class="code-keyword">for</span>(i = <span class="code-number">1</span>; i <= n; i++) {
+                        factorial *= i;
+                    }
+                    <span class="code-function">printf</span>(<span class="code-string">"Factorial of %d is %llu.\n"</span>, n, factorial);
+                }
+                <span class="code-keyword">break</span>;
+            <span class="code-keyword">case</span> <span class="code-number">4</span>:
+                <span class="code-function">printf</span>(<span class="code-string">"Exiting program. Goodbye!\n"</span>);
+                <span class="code-keyword">break</span>;
+            <span class="code-keyword">default</span>:
+                <span class="code-function">printf</span>(<span class="code-string">"Invalid choice! Please enter a number between 1 and 4.\n"</span>);
+        }
+    } <span class="code-keyword">while</span>(choice != <span class="code-number">4</span>);
+    
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                </div>
+            </div>
+
+            <!-- Solution 4 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">4. Sum and average of an array.</h3>
+                <button class="solution-toggle">
+                    <span>Show/Hide Solution</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">int</span> n, i, sum = <span class="code-number">0</span>;
+    <span class="code-function">printf</span>(<span class="code-string">"Enter the number of elements: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &n);
+    <span class="code-keyword">int</span> arr[n];
+
+    <span class="code-function">printf</span>(<span class="code-string">"Enter %d integers: "</span>, n);
+    <span class="code-keyword">for</span> (i = <span class="code-number">0</span>; i < n; i++) {
+        <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &arr[i]);
+        sum += arr[i];
+    }
+
+    <span class="code-keyword">float</span> average = (<span class="code-keyword">float</span>)sum / n;
+    <span class="code-function">printf</span>(<span class="code-string">"Sum: %d\n"</span>, sum);
+    <span class="code-function">printf</span>(<span class="code-string">"Average: %.2f\n"</span>, average);
+
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                </div>
+            </div>
+
+            <!-- Solution 5 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">5. Max and minimum in an array.</h3>
+                <button class="solution-toggle">
+                    <span>Show/Hide Solution</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">int</span> n, i, max, min;
+    <span class="code-function">printf</span>(<span class="code-string">"Enter the number of elements: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &n);
+    <span class="code-keyword">int</span> arr[n];
+
+    <span class="code-function">printf</span>(<span class="code-string">"Enter %d integers: "</span>, n);
+    <span class="code-keyword">for</span> (i = <span class="code-number">0</span>; i < n; i++) {
+        <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &arr[i]);
+    }
+
+    max = arr[<span class="code-number">0</span>];
+    min = arr[<span class="code-number">0</span>];
+    <span class="code-keyword">for</span> (i = <span class="code-number">1</span>; i < n; i++) {
+        <span class="code-keyword">if</span> (arr[i] > max) max = arr[i];
+        <span class="code-keyword">if</span> (arr[i] < min) min = arr[i];
+    }
+
+    <span class="code-function">printf</span>(<span class="code-string">"Maximum element: %d\n"</span>, max);
+    <span class="code-function">printf</span>(<span class="code-string">"Minimum element: %d\n"</span>, min);
+
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                </div>
+            </div>
+
+            <!-- Solution 6 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">6. Reverse an array in-place.</h3>
+                <button class="solution-toggle">
+                    <span>Show/Hide Solution</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">int</span> n, i, temp;
+    <span class="code-function">printf</span>(<span class="code-string">"Enter the number of elements: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &n);
+    <span class="code-keyword">int</span> arr[n];
+
+    <span class="code-function">printf</span>(<span class="code-string">"Enter %d integers: "</span>, n);
+    <span class="code-keyword">for</span> (i = <span class="code-number">0</span>; i < n; i++) <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &arr[i]);
+    
+    <span class="code-function">printf</span>(<span class="code-string">"Original array: "</span>);
+    <span class="code-keyword">for</span> (i = <span class="code-number">0</span>; i < n; i++) <span class="code-function">printf</span>(<span class="code-string">"%d "</span>, arr[i]);
+    <span class="code-function">printf</span>(<span class="code-string">"\n"</span>);
+
+    <span class="code-keyword">for</span> (i = <span class="code-number">0</span>; i < n / <span class="code-number">2</span>; i++) {
+        temp = arr[i];
+        arr[i] = arr[n - <span class="code-number">1</span> - i];
+        arr[n - <span class="code-number">1</span> - i] = temp;
+    }
+
+    <span class="code-function">printf</span>(<span class="code-string">"Reversed array: "</span>);
+    <span class="code-keyword">for</span> (i = <span class="code-number">0</span>; i < n; i++) <span class="code-function">printf</span>(<span class="code-string">"%d "</span>, arr[i]);
+    <span class="code-function">printf</span>(<span class="code-string">"\n"</span>);
+
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                </div>
+            </div>
+
+            <!-- Solution 7 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">7. Count frequency of numbers (0-9).</h3>
+                <button class="solution-toggle">
+                    <span>Show/Hide Solution</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">int</span> n, i;
+    <span class="code-keyword">int</span> freq[<span class="code-number">10</span>] = {<span class="code-number">0</span>};
+    <span class="code-function">printf</span>(<span class="code-string">"Enter array size: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &n);
+    <span class="code-keyword">int</span> arr[n];
+
+    <span class="code-function">printf</span>(<span class="code-string">"Enter %d elements (0-9): "</span>, n);
+    <span class="code-keyword">for</span> (i = <span class="code-number">0</span>; i < n; i++) {
+        <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &arr[i]);
+        <span class="code-keyword">if</span>(arr[i] >= <span class="code-number">0</span> && arr[i] <= <span class="code-number">9</span>) {
+            freq[arr[i]]++;
+        }
+    }
+
+    <span class="code-keyword">for</span>(i = <span class="code-number">0</span>; i < <span class="code-number">10</span>; i++) {
+        <span class="code-function">printf</span>(<span class="code-string">"Frequency of %d is %d\n"</span>, i, freq[i]);
+    }
+
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                </div>
+            </div>
+
+            <!-- Solution 8 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">8. Remove duplicates from an array.</h3>
+                <button class="solution-toggle">
+                    <span>Show/Hide Solution</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">int</span> n, i, j, k;
+    <span class="code-function">printf</span>(<span class="code-string">"Enter array size: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &n);
+    <span class="code-keyword">int</span> arr[n];
+
+    <span class="code-function">printf</span>(<span class="code-string">"Enter %d elements: "</span>, n);
+    <span class="code-keyword">for</span> (i = <span class="code-number">0</span>; i < n; i++) <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &arr[i]);
+
+    <span class="code-keyword">for</span> (i = <span class="code-number">0</span>; i < n; i++) {
+        <span class="code-keyword">for</span> (j = i + <span class="code-number">1</span>; j < n;) {
+            <span class="code-keyword">if</span> (arr[j] == arr[i]) {
+                <span class="code-keyword">for</span> (k = j; k < n - <span class="code-number">1</span>; k++) {
+                    arr[k] = arr[k + <span class="code-number">1</span>];
+                }
+                n--; <span class="code-comment">// Reduce size of array</span>
+            } <span class="code-keyword">else</span> {
+                j++;
+            }
+        }
+    }
+
+    <span class="code-function">printf</span>(<span class="code-string">"Array after removing duplicates: "</span>);
+    <span class="code-keyword">for</span> (i = <span class="code-number">0</span>; i < n; i++) <span class="code-function">printf</span>(<span class="code-string">"%d "</span>, arr[i]);
+    <span class="code-function">printf</span>(<span class="code-string">"\n"</span>);
+
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                </div>
+            </div>
+
+            <!-- Solution 9 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">9. Multiply two matrices (m x n and n x p).</h3>
+                <button class="solution-toggle">
+                    <span>Show/Hide Solution</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">int</span> m, n, p, i, j, k;
+    <span class="code-function">printf</span>(<span class="code-string">"Enter rows and columns for first matrix: "</span>);
+    <span class="code-function">scanf</span>(<span class="code-string">"%d %d"</span>, &m, &n);
+    <span class="code-function">printf</span>(<span class="code-string">"Enter rows and columns for second matrix (rows must be %d): "</span>, n);
+    <span class="code-function">scanf</span>(<span class="code-string">"%*d %d"</span>, &p); <span class="code-comment">// Read and discard rows, only store columns</span>
+
+    <span class="code-keyword">int</span> A[m][n], B[n][p], C[m][p];
+
+    <span class="code-function">printf</span>(<span class="code-string">"Enter elements of matrix 1:\n"</span>);
+    <span class="code-keyword">for</span> (i = <span class="code-number">0</span>; i < m; i++) <span class="code-keyword">for</span> (j = <span class="code-number">0</span>; j < n; j++) <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &A[i][j]);
+
+    <span class="code-function">printf</span>(<span class="code-string">"Enter elements of matrix 2:\n"</span>);
+    <span class="code-keyword">for</span> (i = <span class="code-number">0</span>; i < n; i++) <span class="code-keyword">for</span> (j = <span class="code-number">0</span>; j < p; j++) <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &B[i][j]);
+    
+    <span class="code-comment">// Initialize result matrix to 0</span>
+    <span class="code-keyword">for</span> (i = <span class="code-number">0</span>; i < m; i++) <span class="code-keyword">for</span> (j = <span class="code-number">0</span>; j < p; j++) C[i][j] = <span class="code-number">0</span>;
+
+    <span class="code-comment">// Multiplication</span>
+    <span class="code-keyword">for</span> (i = <span class="code-number">0</span>; i < m; i++) {
+        <span class="code-keyword">for</span> (j = <span class="code-number">0</span>; j < p; j++) {
+            <span class="code-keyword">for</span> (k = <span class="code-number">0</span>; k < n; k++) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+
+    <span class="code-function">printf</span>(<span class="code-string">"Resultant Matrix:\n"</span>);
+    <span class="code-keyword">for</span> (i = <span class="code-number">0</span>; i < m; i++) {
+        <span class="code-keyword">for</span> (j = <span class="code-number">0</span>; j < p; j++) {
+            <span class="code-function">printf</span>(<span class="code-string">"%d "</span>, C[i][j]);
+        }
+        <span class="code-function">printf</span>(<span class="code-string">"\n"</span>);
+    }
+    
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                </div>
+            </div>
+            
+            <!-- Solution 10 -->
+            <div class="problem-card">
+                <h3 class="text-xl font-semibold mb-4 text-hulk-green-light">10. Sum of two 3x3 matrices.</h3>
+                <button class="solution-toggle">
+                    <span>Show/Hide Solution</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="solution-content">
+<pre><span class="code-preprocessor">#include &lt;stdio.h&gt;</span>
+
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">int</span> A[<span class="code-number">3</span>][<span class="code-number">3</span>], B[<span class="code-number">3</span>][<span class="code-number">3</span>], C[<span class="code-number">3</span>][<span class="code-number">3</span>], i, j;
+    
+    <span class="code-function">printf</span>(<span class="code-string">"Enter elements of matrix 1 (3x3):\n"</span>);
+    <span class="code-keyword">for</span>(i = <span class="code-number">0</span>; i < <span class="code-number">3</span>; i++) <span class="code-keyword">for</span>(j = <span class="code-number">0</span>; j < <span class="code-number">3</span>; j++) <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &A[i][j]);
+    
+    <span class="code-function">printf</span>(<span class="code-string">"Enter elements of matrix 2 (3x3):\n"</span>);
+    <span class="code-keyword">for</span>(i = <span class="code-number">0</span>; i < <span class="code-number">3</span>; i++) <span class="code-keyword">for</span>(j = <span class="code-number">0</span>; j < <span class="code-number">3</span>; j++) <span class="code-function">scanf</span>(<span class="code-string">"%d"</span>, &B[i][j]);
+    
+    <span class="code-comment">// Summation</span>
+    <span class="code-keyword">for</span>(i = <span class="code-number">0</span>; i < <span class="code-number">3</span>; i++) {
+        <span class="code-keyword">for</span>(j = <span class="code-number">0</span>; j < <span class="code-number">3</span>; j++) {
+            C[i][j] = A[i][j] + B[i][j];
+        }
+    }
+    
+    <span class="code-function">printf</span>(<span class="code-string">"Sum of Matrices:\n"</span>);
+    <span class="code-keyword">for</span>(i = <span class="code-number">0</span>; i < <span class="code-number">3</span>; i++) {
+        <span class="code-keyword">for</span>(j = <span class="code-number">0</span>; j < <span class="code-number">3</span>; j++) {
+            <span class="code-function">printf</span>(<span class="code-string">"%d "</span>, C[i][j]);
+        }
+        <span class="code-function">printf</span>(<span class="code-string">"\n"</span>);
+    }
+    
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</pre>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="text-center mt-8">
+         <a href="./index.html" class="btn-home inline-block py-3 px-6 text-lg">Back to Main Hub</a>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.solution-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const solutionContent = button.nextElementSibling;
+                button.classList.toggle('open');
+                if (solutionContent.style.maxHeight) {
+                    solutionContent.style.maxHeight = null;
+                } else {
+                    solutionContent.style.maxHeight = solutionContent.scrollHeight + "px";
+                }
+            });
+        });
+
+        document.querySelectorAll('pre').forEach(block => {
+            const copyButton = document.createElement('button');
+            copyButton.textContent = 'Copy';
+            copyButton.className = 'copy-btn';
+            copyButton.addEventListener('click', () => {
+                const textToCopy = block.innerText.replace(/\s*Copy\s*$/, ''); // Cleanly remove the button text
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    copyButton.textContent = 'Copied!';
+                    setTimeout(() => { copyButton.textContent = 'Copy'; }, 2000);
+                }, () => {
+                    copyButton.textContent = 'Failed!';
+                });
+            });
+            block.appendChild(copyButton);
+        });
+    </script>
+</body>
+</html>
+
